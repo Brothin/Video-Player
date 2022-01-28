@@ -23,4 +23,5 @@
     </RelativeLayout>
 
     <include layout="@layout/custom_controls"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

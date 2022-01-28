@@ -28,8 +28,6 @@
             android:layout_marginStart="10dp"
             app:tint="@color/white"/>
 
-
-
     </RelativeLayout>
 
 </androidx.cardview.widget.CardView>
