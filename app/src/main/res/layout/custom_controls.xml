@@ -75,7 +75,7 @@
             android:layout_weight="1"
             android:progressBackgroundTint="@color/white"
             android:progressTint="@color/yellow"
-            android:thumb="@drawable/seekbar_thumb"/>
+            android:thumb="@drawable/seekbar_thumb" />
 
         <TextView
             android:layout_width="wrap_content"

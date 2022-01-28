@@ -98,6 +98,56 @@ public class VideoPlayerActivity extends AppCompatActivity {
         initializeSeekBar();
     }
 
+    private void showControls(){
+        controlsRL.setVisibility(View.VISIBLE);
+
+        final Window window=this.getWindow();
+        if(window==null){
+            return;
+        }
+        window.clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        window.addFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN);
+        View decorView=window.getDecorView();
+        if(decorView!=null){
+            int uiOption=decorView.getSystemUiVisibility();
+            if(Build.VERSION.SDK_INT>=14){
+                uiOption &= ~View.SYSTEM_UI_FLAG_LOW_PROFILE;
+            }
+            if(Build.VERSION.SDK_INT>=16){
+                uiOption &= ~View.SYSTEM_UI_FLAG_HIDE_NAVIGATION;
+            }
+            if(Build.VERSION.SDK_INT>=19){
+                uiOption &= ~View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
+            }
+            decorView.setSystemUiVisibility(uiOption);
+        }
+    }
+
+    private void hideControls(){
+        controlsRL.setVisibility(View.GONE);
+
+        final Window window=this.getWindow();
+        if(window==null){
+            return;
+        }
+        window.clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        window.addFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN);
+        View decorView=window.getDecorView();
+        if(decorView!=null){
+            int uiOption=decorView.getSystemUiVisibility();
+            if(Build.VERSION.SDK_INT>=14){
+                uiOption |= View.SYSTEM_UI_FLAG_LOW_PROFILE;
+            }
+            if(Build.VERSION.SDK_INT>=16){
+                uiOption |= View.SYSTEM_UI_FLAG_HIDE_NAVIGATION;
+            }
+            if(Build.VERSION.SDK_INT>=19){
+                uiOption |= View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
+            }
+            decorView.setSystemUiVisibility(uiOption);
+        }
+    }
+
     private void setHandler(){
         Handler handler=new Handler();
         Runnable runnable=new Runnable() {
@@ -155,55 +205,5 @@ public class VideoPlayerActivity extends AppCompatActivity {
 
             }
         });
-    }
-
-    private void showControls(){
-        controlsRL.setVisibility(View.VISIBLE);
-
-        final Window window=this.getWindow();
-        if(window==null){
-            return;
-        }
-        window.clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        window.addFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN);
-        View decorView=window.getDecorView();
-        if(decorView!=null){
-            int uiOption=decorView.getSystemUiVisibility();
-            if(Build.VERSION.SDK_INT>=14){
-                uiOption &= ~View.SYSTEM_UI_FLAG_LOW_PROFILE;
-            }
-            if(Build.VERSION.SDK_INT>=16){
-                uiOption &= ~View.SYSTEM_UI_FLAG_HIDE_NAVIGATION;
-            }
-            if(Build.VERSION.SDK_INT>=19){
-                uiOption &= ~View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
-            }
-            decorView.setSystemUiVisibility(uiOption);
-        }
-    }
-
-    private void hideControls(){
-        controlsRL.setVisibility(View.GONE);
-
-        final Window window=this.getWindow();
-        if(window==null){
-            return;
-        }
-        window.clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        window.addFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN);
-        View decorView=window.getDecorView();
-        if(decorView!=null){
-            int uiOption=decorView.getSystemUiVisibility();
-            if(Build.VERSION.SDK_INT>=14){
-                uiOption |= View.SYSTEM_UI_FLAG_LOW_PROFILE;
-            }
-            if(Build.VERSION.SDK_INT>=16){
-                uiOption |= View.SYSTEM_UI_FLAG_HIDE_NAVIGATION;
-            }
-            if(Build.VERSION.SDK_INT>=19){
-                uiOption |= View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
-            }
-            decorView.setSystemUiVisibility(uiOption);
-        }
     }
 }
